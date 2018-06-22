@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Login</title>
+</head>
+<body>
+	<form method="">
+		<table>
+			<tbody>
+				<tr>
+					<td>First name: </td>
+					<td><input type="text" name="firstName" required></td>
+				</tr>
+				<tr>
+					<td>Last name: </td>					
+					<td><input type="text" name="lastName" required></td>
+				</tr>
+				<tr>
+					<td>Email: </td>
+					<td><input type="email" name="userMail" required></td>
+				</tr>
+				<tr>
+					<td>Favourite sport: </td>
+					<td>
+						<select name="sports">
+							<option value="" disabled selected>Select one</option>
+							<option value="Volley">Volley</option>
+							<option value="Basket">Basket</option>
+							<option value="Soccer">Soccer</option>
+							<option value="Baseball">Baseball</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>About me: </td>
+					<td><textarea name="aboutMe" rows="10" cols="30"></textarea></td>
+				</tr>
+				<tr>
+					<td><input type="reset" value="Reset"></td>
+					<td><input type="submit" value="Send"></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</body>
+</html>

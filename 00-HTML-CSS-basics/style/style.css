@@ -1,0 +1,113 @@
+*{
+	font-family: Helvetica, Verdana, sans-serif;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
+header{
+	background-color: #B59790; 
+	text-align: center;
+}
+
+section header{
+	background-color: white;
+}
+
+section footer{ 
+	background-color: white;
+}
+
+aside{
+	background-color: #905C5C;
+}
+
+nav{
+	background-color: #A06438;
+}
+
+footer{
+	background-color: #38A09E;
+	text-align: center;
+}
+
+.header{
+	height: 10%;
+	display: block;
+	font-size: 46px;
+	padding: 10px;
+}
+
+.footer, .sidebar{
+	font-size: 10px;
+}
+.sidebar{
+	float: right;
+	display: inline-block;
+	width: 25%;
+	padding: 53px;
+	padding-bottom: 464px;
+	border-bottom-color: black;
+  border-style: solid;
+}
+
+.content{
+	float: center;
+	display: inline-block;
+	font-size: 14px;
+	background-color: #757575;
+	text-align: center;
+	width: 50%;
+	padding-top: 20px;
+	padding-bottom: 26px;
+}
+.content header{
+	background-color: #9E9E9E;
+	padding:15px;
+	margin-top: 10px;
+	width: 80%;
+	margin-left: 10%;
+}
+.content article{
+	background-color: #9E9E9E;
+	margin-top: 10px;
+	margin-left: 10%;
+	padding-top: 20px;
+	padding-bottom: 200px;
+	width: 80%;
+	height: 380px;
+}
+
+.content footer{
+	background-color: #9E9E9E;
+	margin-top: 10px;
+	width: 80%;
+	margin-left: 10%;
+}
+.navigation {
+	float: left;
+    display: inline-block;
+    font-size: 12px;
+    width: 25%;
+    padding: 51px;
+    padding-bottom: 470px;
+}
+
+.footer{
+	display: block;
+	vertical-align: bottom;
+	padding-top: 10%;
+}
+[class$='r']{
+	background-color: #FF00FF !important;
+}
+
+[class*='a']{
+	background-color: #0000FF;
+}
+/*
+6) To add weight to the global font i 
+	need to add the style tag and then 
+	change the attribute i want to change.
+7) We can do it adding to the value of 
+	the property "!important"
+*/
