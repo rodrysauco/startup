@@ -8,14 +8,20 @@
 	text-align: center;
 }
 
-body{
+.content{
+	display: inline-block;
 	text-align: center;
+	width: 70%;
+	box-sizing: border-box;
+	margin-left: 15%;	
 }
 
-.content{
-	box-sizing: content-box;
-	padding-right: 10%;
-	padding-left: 10%;
+.hidden-list{
+	  overflow-y: auto;
+    max-height: 300px;
+    width: 15%;
+    margin-top: 15%;
+    float: right;
 }
 
 /*--------------Phone----------------*/
@@ -23,6 +29,22 @@ body{
 	.header{
 		width: 100%;
 		margin-left: 0%;
+	}
+
+	.hidden-list{
+		overflow-y: auto;
+    max-height: 300px;
+		float: none;
+		width: 80%;
+		margin-top: 15px;
+	  margin-left: 20%;
+	}
+
+	.content{
+		text-align: center;
+		width: 80%;
+		box-sizing: border-box;
+		margin-left: 10%;	
 	}
 }
 
@@ -35,9 +57,31 @@ body{
 	}
 }
 
+button{
+	box-shadow: 0 3px 8px grey;
+}
+
+.hidden{
+	box-sizing: border-box;
+	width: 80%;
+	margin-left: 10%;
+}
+
+#hi{
+	box-sizing: border-box;
+	width: 70%;
+	margin-left: 15%;
+}
+
+.topic7{
+	box-sizing: border-box;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 25px;
+}
+
 .fade-in {
 	opacity: 1;
-	text-shadow: 2px 2px 2px grey;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
@@ -46,8 +90,9 @@ body{
 
 .footer{
 	width: 100%;
-	box-sizing: content-box;
-	position: absolute;
+	box-sizing: border-box;
+	padding-top: 20px;
+	position: relative;
 	bottom: 0;
 	height: 100px;
 	text-align: center;
