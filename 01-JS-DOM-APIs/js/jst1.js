@@ -54,8 +54,13 @@ function errorHandler(statusCode){
 
 //Ex. 7
 function jokeWithPromise(){
-	let url = "http://api.icndb.com/jokes/random";
-	ajaxCall(url).then(promiseToJoke,errorHandler);
+	testingMatrix();
+	let data = {
+		method: "GET",
+		url:"http://api.icndb.com/jokes/random",
+		async:true,
+	};
+	ajaxCall(data).then(promiseToJoke,errorHandler);
 }
 //Receives the Promise content
 function promiseToJoke(data){
@@ -64,10 +69,9 @@ function promiseToJoke(data){
 	text.parentElement.style.backgroundColor = "white";
 }
 
-function ajaxCall(url){
+function ajaxCall(config){
 	let promiseObj = new Promise (function (resolve, reject){
 		let request;
-		let response;
 		if (window.XMLHttpRequest) {
     // code for modern browsers
     	request = new XMLHttpRequest();
@@ -75,29 +79,31 @@ function ajaxCall(url){
     // code for old IE browsers
     	request = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    request.open("GET",url,true);
+    request.open(config.method,config.url,config.async);
     request.send();
     request.onreadystatechange = function(){
     	if (request.readyState == 4) {
     		if (request.status == 200) {
-    			console.log("Request done");
-    			response = JSON.parse(request.responseText);
+    			let response = JSON.parse(request.responseText);
     			resolve(response);
     		} else {
     			reject(request.status);
-    			console.log("No connection");
     		}
     	} else {
     		console.log("Still processing the request");
     	}
     }
-    console.log("Done");
 	});
 	return promiseObj;
 }
 // Ex. 9 - 10
 function gitSearch(){
-	let url = "https://api.github.com/search/repositories";
+	let data = {
+		url:"https://api.github.com/search/repositories",
+		param:,
+		method:,
+		async:true,
+	}
 	let param = document.getElementById("search");
 	if (param.value.length > 0) {
 		url += "?q=" + param.value;
@@ -121,14 +127,50 @@ function promiseToList(data){
 	field.hidden = false;
 }
 
+
 //12
 function matrixToTable(matrix){
 	//Create the father node
-	for (let row of matrix.row){
+	let table = document.createElement('table');
+	table.className = "generatedTable";
+	table.style.width = "50%";
+	table.style.marginLeft = "25%";
+	table.style.marginTop = "20px";
+	for (let row of matrix){
 		//create the child node
-		for (let col of row.col){
+		let tableRow = document.createElement('tr');
+		for (let col of row){
 			//Create the grandchild
+			let tableCol = document.createElement('td');
+			let text = document.createTextNode(col);
+			//Sticking the text to the td
+			tableCol.appendChild(text);
+			tableRow.appendChild(tableCol);
+		}
+		table.appendChild(tableRow);
+	}
+	let body = document.getElementsByTagName("body");
+	let ifExists = document.getElementsByClassName("generatedTable");
+	//We create if the table wasnt created before
+	if(ifExists.length < 1){
+		/*Both funcs return an array with all elements that
+		match with the parameter*/
+		let footer = document.getElementsByClassName("footer");
+		//To fix this, we put [0]
+		body[0].insertBefore(table,footer[0]);
+	}else{
+		//We replace the table if was already created
+		body[0].replaceChild(table,ifExists[0]);
+	}
+}
 
+function testingMatrix(){
+	let matrix = [];
+	for(let r = 0; r < 6; r++){
+		matrix[r] = [];
+		for(let c = 0; c < 4; c++){
+			matrix[r][c] = Math.floor((Math.random() * 100) + 1);
 		}
 	}
+	matrixToTable(matrix);
 }
