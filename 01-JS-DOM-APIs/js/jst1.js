@@ -103,18 +103,8 @@ function ajaxCall(config){
 	});
 	return promiseObj;
 }
-//Variaton to ex 7
-function ajaxCallUsingFetch(config){
-	let header = new Headers();
-	let init = {
-		method: config.method,
-		headers: header,
-		mode: "cors",
-		cache: "default",
-	};
-	let request = new Request(config.url,init)
-	fetch(request).then(promiseToList);
-}
+/*Another way to do ex 7 is using fetch 
+	but this functionality isnt supported by all browsers*/
 // Ex. 9 - 10
 function gitSearch(){
 	let param = document.getElementById("search");
@@ -130,7 +120,7 @@ function gitSearch(){
 		}else{
 			data.param = data.value;
 		}
-		ajaxCallUsingFetch(data).then(promiseToList,errorHandler);
+		ajaxCall(data).then(promiseToList,errorHandler);
 	}else{
 		param.placeholder = "Empty search";
 		console.log("Empty param");
@@ -174,7 +164,7 @@ function matrixToTable(matrix){
 	}
 	let body = document.getElementsByTagName("body");
 	let ifExists = document.getElementsByClassName("generatedTable");
-	//We create if the table wasnt created before
+	//We create the table if wasnt created before
 	if(ifExists.length < 1){
 		/*Both funcs return an array with all elements that
 		match with the parameter*/
