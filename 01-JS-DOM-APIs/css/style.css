@@ -17,6 +17,7 @@
 }
 
 .hidden-list{
+	box-sizing: border-box;
 	  overflow-y: auto;
     max-height: 300px;
     width: 15%;
@@ -32,6 +33,8 @@
 	}
 
 	.hidden-list{
+padding-right: 20%;
+    box-sizing: border-box;
 		overflow-y: auto;
     max-height: 300px;
 		float: none;

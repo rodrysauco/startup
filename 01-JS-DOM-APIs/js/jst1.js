@@ -49,12 +49,13 @@ function getJoke(){
 function errorHandler(statusCode){
 	let text = document.getElementById('hi').parentElement;
 	text.style.backgroundColor = "red";
- console.log("Failed with status: ", statusCode);
+	console.log("Failed with status: ", statusCode);
 }
 
 //Ex. 7
 function jokeWithPromise(){
-	testingMatrix();
+	/*Uncomment the next line to test matrixFunc and receive the joke*/
+	//testingMatrix();
 	let data = {
 		method: "GET",
 		url:"http://api.icndb.com/jokes/random",
@@ -79,8 +80,14 @@ function ajaxCall(config){
     // code for old IE browsers
     	request = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    request.open(config.method,config.url,config.async);
-    request.send();
+    if(config.method == "GET"){
+    	request.open(config.method,config.url,config.async);
+    	request.send();
+    }else{
+    	request.open(config.method,config.url,config.async);
+			request.setRequestHeader("Content-type","application/x-ww-form-urlencoded");
+			request.send(config.data);
+    }
     request.onreadystatechange = function(){
     	if (request.readyState == 4) {
     		if (request.status == 200) {
@@ -96,18 +103,34 @@ function ajaxCall(config){
 	});
 	return promiseObj;
 }
+//Variaton to ex 7
+function ajaxCallUsingFetch(config){
+	let header = new Headers();
+	let init = {
+		method: config.method,
+		headers: header,
+		mode: "cors",
+		cache: "default",
+	};
+	let request = new Request(config.url,init)
+	fetch(request).then(promiseToList);
+}
 // Ex. 9 - 10
 function gitSearch(){
-	let data = {
-		url:"https://api.github.com/search/repositories",
-		param:,
-		method:,
-		async:true,
-	}
 	let param = document.getElementById("search");
+	let data = {
+		url : "https://api.github.com/search/repositories",
+		param : "",
+		method : "GET",
+		async : true,
+	}
 	if (param.value.length > 0) {
-		url += "?q=" + param.value;
-		ajaxCall(url).then(promiseToList,errorHandler);
+		if(data.method == "GET"){
+			data.url += "?q="+ param.value;
+		}else{
+			data.param = data.value;
+		}
+		ajaxCallUsingFetch(data).then(promiseToList,errorHandler);
 	}else{
 		param.placeholder = "Empty search";
 		console.log("Empty param");
