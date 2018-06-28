@@ -18,11 +18,11 @@
 
 .hidden-list{
 	box-sizing: border-box;
-	  overflow-y: auto;
-    max-height: 300px;
-    width: 15%;
-    margin-top: 15%;
-    float: right;
+	overflow-y: auto;
+  max-height: 300px;
+  width: 15%;
+  margin-top: 15%;
+  float: right;
 }
 
 /*--------------Phone----------------*/
@@ -33,7 +33,7 @@
 	}
 
 	.hidden-list{
-padding-right: 20%;
+		padding-right: 20%;
     box-sizing: border-box;
 		overflow-y: auto;
     max-height: 300px;
