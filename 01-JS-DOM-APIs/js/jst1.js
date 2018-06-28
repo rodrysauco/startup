@@ -19,7 +19,7 @@ function getJoke(){
  		} else {
     // code for old IE browsers
     	request = new ActiveXObject("Microsoft.XMLHTTP");
-}		/*Open the request with the Method and the url,
+		}/*Open the request with the Method and the url,
 			last boolean is for asynchronous operation*/
 		request.open('Get',url,true);
 		//No parameters needed
