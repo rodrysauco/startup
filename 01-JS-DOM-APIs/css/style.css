@@ -1,0 +1,106 @@
+.header{
+	box-shadow: 0px 10px 5px grey;
+	box-sizing: content-box;
+	margin-left: 10%;
+	width: 80%;
+	height: 50px;
+	background-color: orange;
+	text-align: center;
+}
+
+.content{
+	display: inline-block;
+	text-align: center;
+	width: 70%;
+	box-sizing: border-box;
+	margin-left: 15%;	
+}
+
+.hidden-list{
+	box-sizing: border-box;
+	overflow-y: auto;
+  max-height: 300px;
+  width: 15%;
+  margin-top: 15%;
+  float: right;
+}
+
+/*--------------Phone----------------*/
+@media screen and (max-width: 500px){
+	.header{
+		width: 100%;
+		margin-left: 0%;
+	}
+
+	.hidden-list{
+		padding-right: 20%;
+    box-sizing: border-box;
+		overflow-y: auto;
+    max-height: 300px;
+		float: none;
+		width: 80%;
+		margin-top: 15px;
+	  margin-left: 20%;
+	}
+
+	.content{
+		text-align: center;
+		width: 80%;
+		box-sizing: border-box;
+		margin-left: 10%;	
+	}
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+button{
+	box-shadow: 0 3px 8px grey;
+}
+
+.hidden{
+	box-sizing: border-box;
+	width: 80%;
+	margin-left: 10%;
+}
+
+#hi{
+	box-sizing: border-box;
+	width: 70%;
+	margin-left: 15%;
+}
+
+.topic7{
+	box-sizing: border-box;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 25px;
+}
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+}
+
+.footer{
+	width: 100%;
+	box-sizing: border-box;
+	padding-top: 20px;
+	position: relative;
+	bottom: 0;
+	height: 100px;
+	text-align: center;
+}
+
+.song{
+	vertical-align: middle;
+}
