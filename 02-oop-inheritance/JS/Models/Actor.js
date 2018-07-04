@@ -3,4 +3,4 @@ export class Actor{
     this.name = name;
     this.age = age;
   }
-};
+}
