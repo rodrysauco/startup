@@ -1,0 +1,16 @@
+.Movie {
+  border: 2px solid black;
+  text-align: center;
+  background: #f5f5f5;
+  color: #333;
+  margin: 20px;
+}
+p{
+	margin: 0px !important;
+}
+.MovieList {
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid #00D8FF;
+  background: #DDEEFF;
+}
