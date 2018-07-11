@@ -1,16 +1,45 @@
 .Movie {
   border: 2px solid black;
-  text-align: center;
   background: #f5f5f5;
   color: #333;
   margin: 20px;
 }
+.Movie button{
+  position: relative;
+}
+.AddMovie{
+
+  width: 50%;
+  margin-left: 25%;
+  border: 2px solid black;
+  padding: 10px;
+  text-align: center;
+  background-color: #C3FFC5;
+}
 p{
 	margin: 0px !important;
 }
+h3{
+  margin: 0px !important;
+}
 .MovieList {
-  margin: 20px;
+  display: inline-table;
+  box-sizing: border-box;
+  width: 60%;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 20px;
   border: 2px solid #00D8FF;
   background: #DDEEFF;
 }
+.EditMovie {
+  display: inline-table;
+  background-color: #F6C8FF;
+  border: 2px solid grey;
+  box-sizing: border-box;
+  width: 20%;
+  margin-left: 10%;
+  padding: 10px;
+}
+

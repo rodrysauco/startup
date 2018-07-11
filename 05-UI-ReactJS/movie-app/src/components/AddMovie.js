@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
 export default class AddMovie extends Component{
-	constructor(){
-		super();
-		this.state ={
+	constructor(props){
+		super(props);
+		this.state = {
       title: '',
       year: '',
-      favourite: ''
+      favourite: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.addMovie = this.addMovie.bind(this);
 	}
 
   handleInputChange(event) {
@@ -21,9 +22,18 @@ export default class AddMovie extends Component{
     });
   }
 
+  addMovie(){
+    this.props.addMovie(this.state);
+    this.setState({
+      title: '',
+      year: '',
+      favourite: false
+    });
+  }
+
   render(){
     return(
-      <form>
+      <div className = "AddMovie">
         <label> Movie title: 
         <input 
           name = "title"
@@ -45,8 +55,12 @@ export default class AddMovie extends Component{
           value = {this.state.favourite}
           onChange = {this.handleInputChange}/>
         </label>
-        <button> Add movie to List </button>
-      </form>
+        <input
+          name = "addMovie"
+          type = "submit"
+          value = "Add movie"
+          onClick = {this.addMovie}/>
+      </div>
     );
   }
 }
