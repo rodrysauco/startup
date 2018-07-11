@@ -5,21 +5,28 @@ export default class MovieList extends Component{
   constructor(props){
     super();
     this.renderDynamic = this.renderDynamic.bind(this);
-    this.removeMovie = this.removeMovie.bind(this);
-  }
-
-  removeMovie(movie){
-    this.props.removeMovie(movie);
   }
   renderDynamic(movies){
     return movies.map(movie => (
-        <Movie key = {movie.title} title = {movie.title} year = {movie.year} favourite = {movie.favourite} removeMovie = {this.removeMovie}/>
+        <Movie key = {movie.title} title = {movie.title} year = {movie.year} duration = {movie.duration} removeMovie = {this.props.removeMovie} editMovie = {this.props.editMovie}/>
       ));
   }
   render(){
     return(
       <div className = 'MovieList'>
-        {this.renderDynamic(this.props.movies)}
+        <table className = "table">
+          <thead className ="table-head">
+            <tr>
+              <th>Title</th>
+              <th>Year</th>
+              <th>Duration</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody className = "tbody">
+            {this.renderDynamic(this.props.movies)}
+          </tbody>
+        </table>
       </div>
       );
   }

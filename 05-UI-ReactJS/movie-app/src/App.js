@@ -2,20 +2,28 @@ import React, {Component} from 'react';
 import MovieList from './components/MovieList';
 import AddMovie from './components/AddMovie';
 import EditMovie from './components/EditMovie'
+import Header from './components/Header'
 import './App.css';
+
 
 export default class App extends Component{
   constructor (){
     super();
     this.state = { 
       movies: [
-        {title:"Batman",year:"2012",favourite:true},
-        {title:"Superman",year:"2016",favourite:true},
-        {title:"Ratatouille",year:"2014",favourite:false}        
-      ]};
+        {title:"Batman",year:"2012", duration:"90"},
+        {title:"Superman",year:"2016",duration:"95"},
+        {title:"Ratatouille",year:"2014", duration:"105"}        
+      ],
+      isOpen: false,
+      edited:{}
+    };
     this.addMovie = this.addMovie.bind(this);
     this.checkIfExist = this.checkIfExist.bind(this);
     this.removeMovie = this.removeMovie.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.editMovie = this.editMovie.bind(this);
   }
   
   checkIfExist(movie){
@@ -26,6 +34,19 @@ export default class App extends Component{
       }
     }
     return bool;
+  }
+  editMovie(params){
+    //dostuff
+  }
+  openModal(movie){
+    this.setState({
+      isOpen:true,
+      edited: movie
+      });
+  }
+
+  closeModal(){
+    this.setState({ isOpen : false})
   }
 
   removeMovie(toDelete){
@@ -50,10 +71,11 @@ export default class App extends Component{
 
 	render(){
     return (
-    <div className='App'>
+      <div className='App'>
+      <Header/>
       <AddMovie addMovie={this.addMovie}/>
-      <MovieList movies = {this.state.movies} removeMovie = {this.removeMovie}/>
-      <EditMovie/>
+      <MovieList movies = {this.state.movies} removeMovie = {this.removeMovie} editMovie = {this.openModal} />
+      <EditMovie movie = {this.state.edited} isOpen = {this.state.isOpen} onClose = {this.closeModal} onEdit = {this.editMovie}/>
     </div>
     );
   }
