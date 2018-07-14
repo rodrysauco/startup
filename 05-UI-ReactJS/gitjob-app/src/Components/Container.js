@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import JobRow from './JobRow/JobRow';
+
 
 export default class Container extends React.Component {
     state = {
@@ -19,6 +21,7 @@ export default class Container extends React.Component {
         favJobs : []
     }
 
+   
     /*componentDidMount() {
         axios.get(`https://jobs.github.com/positions.json?description=python&location=new+york`,
             {
@@ -33,6 +36,12 @@ export default class Container extends React.Component {
         })
     }*/
     render(){
-        return(<h4>{this.state.allJobs}</h4>)
+        return(
+            <JobRow title = {this.state.allJobs[0].title}
+                location = {this.state.allJobs[0].location}        
+                company = {this.state.allJobs[0].company}        
+                type = {this.state.allJobs[0].type}     
+            />
+        )
     }
 }

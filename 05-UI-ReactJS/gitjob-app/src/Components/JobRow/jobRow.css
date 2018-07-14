@@ -1,0 +1,19 @@
+.jobRow {
+    display: block;
+    width: 80%;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #888;
+    padding: 10px;
+    margin: 10px;
+}
+
+.title {
+    display: inline;
+    font-size: 20px;
+}
+
+.location {
+    display: inline;
+    float: right;
+    margin: 2px;
+}
