@@ -5,7 +5,6 @@ import './jobList.css';
 const JobList = (props)=>{
   return(
     <div className="JobList">
-      
       {props.jobs.map((job,index)=>{
         return <JobRow
           title={job.title}
