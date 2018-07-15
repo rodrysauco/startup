@@ -1,5 +1,6 @@
 import React from 'react';
 import JobRow from '../JobRow/JobRow';
+import './jobList.css';
 
 const JobList = (props)=>{
   return(
