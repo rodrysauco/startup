@@ -8,12 +8,24 @@
 }
 
 .title {
+    color: #222;
+    text-decoration: none;
     display: inline;
     font-size: 20px;
 }
 
 .location {
-    display: inline;
-    float: right;
-    margin: 2px;
+    display: block;
+}
+
+.company{
+  display: inline;
+}
+.fav{
+  display: inline;
+  float: right;
+}
+
+a:hover{
+  color: #339;
 }
