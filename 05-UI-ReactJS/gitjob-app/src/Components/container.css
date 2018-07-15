@@ -1,3 +1,20 @@
 .resultsSection{
-  
+  width: 90%;
+  margin: 0 auto;
+  margin-left: 22%;
+  margin-top: 40px;
+  position:absolute; /*it can be fixed too*/
+}
+
+.container{
+  margin: 0 auto;
+  width: 100%;
+}
+
+.searchSection{
+  background-color: #223;
+  padding: 0px 10px;
+  color: white;
+  overflow: hidden;
+  text-align: center;
 }
