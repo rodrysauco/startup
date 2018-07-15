@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import axios from 'axios';
 import JobRow from './JobRow/JobRow';
 import JobList from './JobList/JobList';
+import './container.css';
 
 
 class Container extends Component {
@@ -77,8 +78,10 @@ class Container extends Component {
     addFavHandler = (id)=>{
       const favs = [...this.state.favJobs];
       const newFav = this.state.allJobs.filter(job=>job.id === id);
-      const updateFavs = newFav.concat(favs);
-      this.setState({favJobs: updateFavs});
+      if(!favs.includes(newFav[0])){
+        const updateFavs = newFav.concat(favs);
+        this.setState({favJobs: updateFavs});
+      }
     }
 
     removeFavHandler = (id)=>{
@@ -89,9 +92,10 @@ class Container extends Component {
 
     render(){
         return(
-          <div>
-            <div className="searchSection">
-            </div>
+          <div className="container">
+            <header className="searchSection">
+              <h1>GitHub Jobs</h1>
+            </header>
 
             <div className="resultsSection">
               <JobList
