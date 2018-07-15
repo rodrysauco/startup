@@ -1,11 +1,12 @@
-import React from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
+//import axios from 'axios';
 import JobRow from './JobRow/JobRow';
+import JobList from './JobList/JobList';
 
 
-export default class Container extends React.Component {
+class Container extends Component {
     state = {
-        allJobs : [{  
+        allJobs : [{
             "id":"5426bf4a-6b4e-11e8-88ec-678588b528e2",
             "created_at":"Mon Jul 09 15:14:05 UTC 2018",
             "title":"Software Engineer",
@@ -17,31 +18,37 @@ export default class Container extends React.Component {
             "company_url":"https://www.blinddata.com/r/GitHub",
             "company_logo":"http://github-jobs.s3.amazonaws.com/3a8453d6-6b4e-11e8-9fec-041f68848b4c.png",
             "url":"http://jobs.github.com/positions/5426bf4a-6b4e-11e8-88ec-678588b528e2"
-         },],
+         }],
         favJobs : []
     }
 
-   
+
     /*componentDidMount() {
-        axios.get(`https://jobs.github.com/positions.json?description=python&location=new+york`,
-            {
-            headers: {
-                'Authorization' : '',
-                'Content-Type' : 'application/json'
-                }
-            })
-            .then(res => {
-                const jobs = res.data;
-                this.setState({ allJobs: jobs });
-        })
-    }*/
+           axios.get(`https://jobs.github.com/positions.json?description=python&location=new+york`,
+               {
+               headers: {
+                   'Authorization' : '',
+                   'Content-Type' : 'application/json'
+                   }
+               })
+               .then(res => {
+                   const jobs = res.data;
+                   this.setState({ allJobs: jobs });
+           })
+       }*/
+
     render(){
         return(
-            <JobRow title = {this.state.allJobs[0].title}
-                location = {this.state.allJobs[0].location}        
-                company = {this.state.allJobs[0].company}        
-                type = {this.state.allJobs[0].type}     
-            />
+          <div>
+            <JobList
+                jobs={this.state.allJobs}/>
+          </div>
+
+
+
+
         )
     }
 }
+
+export default Container
