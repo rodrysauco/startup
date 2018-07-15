@@ -81,7 +81,11 @@ class Container extends Component {
       this.setState({favJobs: updateFavs});
     }
 
-    removeFavHandler = ()=>{}
+    removeFavHandler = (id)=>{
+      const favs = [...this.state.favJobs];
+      const updateFavs = favs.filter(job=>job.id !==id);
+      this.setState({favJobs: updateFavs});
+    }
 
     render(){
         return(
@@ -91,9 +95,10 @@ class Container extends Component {
 
             <div className="resultsSection">
               <JobList
-                  add={this.addFavHandler}
+                  toggleFav={this.addFavHandler}
                   jobs={this.state.allJobs}/>
               <JobList
+                  toggleFav={this.removeFavHandler}
                   jobs={this.state.favJobs}/>
             </div>
 

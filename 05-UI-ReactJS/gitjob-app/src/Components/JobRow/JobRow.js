@@ -10,7 +10,7 @@ const jobRow = (props) => {
             </a>
             <h4 className = "location">{props.location}</h4>
             <p className = "company">{props.company} - {props.type}</p>
-            <button className ="fav" onClick={props.addFav}>Fav</button>        
+            <button className ="fav" onClick={props.toggleFav}>Fav</button>        
         </div>
     )
 }
