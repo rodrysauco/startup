@@ -4,13 +4,13 @@ import './jobRow.css';
 const jobRow = (props) => {
     return(
         <div className="jobRow">
-            <a 
+            <a
                 className = "title"
                 href="">{props.title}
             </a>
             <h4 className = "location">{props.location}</h4>
             <p className = "company">{props.company} - {props.type}</p>
-            <button className ="fav">Fav</button>        
+            <button className ="fav" onClick={props.addFav}>Fav</button>        
         </div>
     )
 }

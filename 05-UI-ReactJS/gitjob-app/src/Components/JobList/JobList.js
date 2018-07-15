@@ -10,7 +10,8 @@ const JobList = (props)=>{
           title={job.title}
           location={job.location}
           company={job.company}
-          type={job.type}/>
+          type={job.type}
+          addFav={()=>props.add(job.id)}/>
       })}
     </div>
   )
