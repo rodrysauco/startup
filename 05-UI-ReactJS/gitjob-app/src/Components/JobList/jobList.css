@@ -1,5 +1,7 @@
 .JobList{
   width:30%;
+  height: 300px;
+  overflow-y:scroll;
   border:.5px solid #ccc;
   margin: 5px;
   display: inline-block;
