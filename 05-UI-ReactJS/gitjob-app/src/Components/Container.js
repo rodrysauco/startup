@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import JobRow from './JobRow/JobRow';
 import JobList from './JobList/JobList';
+import JobDetails from './JobDetails/JobDetails';
+
 import './container.css';
 
 
@@ -61,28 +63,24 @@ class Container extends Component {
     }
 
 
+    componentDidMount() {
+        axios.get('https://jobs.github.com/positions.json?description=python&location=sf&full_time=true')
+          .then((res) => { this.setState({ allJobs: res.data});
+          })
+          .catch((err) => console.log(err));
 
-
-
-    /*componentDidMount() {
-           axios.get(`https://jobs.github.com/positions.json?description=python&location=new+york`,
-               {
-               headers: {
-                   'Authorization' : '',
-                   'Content-Type' : 'application/json'
-                   }
-               })
-               .then(res => {
-                   const jobs = res.data;
-                   this.setState({ allJobs: jobs });
-           })
-       }*/
+        this.hydrateStateWithLocalStorage();
+        window.addEventListener(
+            "beforeunload",
+            this.saveStateToLocalStorage.bind(this)
+        );
+    }
 
     addFavHandler = (id)=>{
-      const favs = [...this.state.favJobs];
+      //const favs = [...this.state.favJobs];
       const newFav = this.state.allJobs.filter(job=>job.id === id);
-      if(!favs.includes(newFav[0])){
-        const updateFavs = newFav.concat(favs);
+      if(!this.state.favJobs.includes(newFav[0])){
+        const updateFavs = newFav.concat(this.state.favJobs);
         this.setState({favJobs: updateFavs});
         localStorage.setItem("favs", JSON.stringify(updateFavs));
       }
@@ -116,15 +114,6 @@ class Container extends Component {
        }
     }
 
-
-    componentDidMount() {
-      this.hydrateStateWithLocalStorage();
-      window.addEventListener(
-        "beforeunload",
-        this.saveStateToLocalStorage.bind(this)
-      );
-    }
-
     componentWillUnmount() {
       window.removeEventListener(
         "beforeunload",
@@ -133,21 +122,22 @@ class Container extends Component {
       this.saveStateToLocalStorage();
     }
 
+
     render(){
         return(
-          <div className="container">
-            <header className="searchSection">
+          <div className="container col-12">
+            <header className="header col-12">
               <h1>GitHub Jobs</h1>
             </header>
 
-            <div className="resultsSection">
-              <div className="list">
+            <div className="resultsSection col-8">
+              <div className="list col-4">
                 <h3>Results</h3>
                 <JobList
                     toggleFav={this.addFavHandler}
                     jobs={this.state.allJobs}/>
               </div>
-              <div className="list">
+              <div className="list col-4">
                 <h3>My Favorites ({this.state.favJobs.length}) </h3>
                 <JobList
                     toggleFav={this.removeFavHandler}
@@ -155,8 +145,16 @@ class Container extends Component {
               </div>
             </div>
 
-            <div className="detailsSection">
-            </div>
+              {/*}  <JobDetails
+                    company = {this.state.allJobs[0].company}
+                    type = {this.state.allJobs[0].type}
+                    title = {this.state.allJobs[0].title}
+                    description = {this.state.allJobs[0].description}
+                    location = {this.state.allJobs[0].location}
+                    company_logo = {this.state.allJobs[0].company_logo}
+                    company_url = {this.state.allJobs[0].company_url}
+                    url = {this.state.allJobs[0].url}/> */}
+
           </div>
         )
     }
