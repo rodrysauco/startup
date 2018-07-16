@@ -1,11 +1,3 @@
 .jobDetails {
-    display: inline;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #888;
-    padding: 10px;
-    width: 80%;
-}
-
-.description {
-    width: 50%;
+    margin: 10px;
 }

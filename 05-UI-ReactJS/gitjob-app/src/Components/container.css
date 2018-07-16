@@ -3,7 +3,7 @@
   margin: 0 auto;
   margin-left: 22%;
   margin-top: 40px;
-  position:absolute; /*it can be fixed too*/
+  /*position:absolute; /*it can be fixed too*/
 }
 
 .container{
@@ -17,4 +17,10 @@
   color: white;
   overflow: hidden;
   text-align: center;
+}
+
+.detailsSection {
+  display: block;
+  width: 700px;
+  margin: 0 auto;
 }

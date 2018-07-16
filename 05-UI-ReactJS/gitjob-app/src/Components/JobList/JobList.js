@@ -11,7 +11,9 @@ const JobList = (props)=>{
           location={job.location}
           company={job.company}
           type={job.type}
-          toggleFav={()=>props.toggleFav(job.id)}/>
+          toggleFav={()=>props.toggleFav(job.id)}
+          showJobDetail={() => props.showJobDetailHandler(job)}
+        />
       })}
     </div>
   )
