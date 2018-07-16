@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 //import axios from 'axios';
 import JobRow from './JobRow/JobRow';
 import JobList from './JobList/JobList';
+import JobDetails from './JobDetails/JobDetails';
+
 
 
 class Container extends Component {
@@ -60,19 +62,12 @@ class Container extends Component {
     }
 
 
-    /*componentDidMount() {
-           axios.get(`https://jobs.github.com/positions.json?description=python&location=new+york`,
-               {
-               headers: {
-                   'Authorization' : '',
-                   'Content-Type' : 'application/json'
-                   }
-               })
-               .then(res => {
-                   const jobs = res.data;
-                   this.setState({ allJobs: jobs });
-           })
-       }*/
+    componentDidMount() {
+        axios.get('https://jobs.github.com/positions.json?description=python&location=sf&full_time=true')
+          .then((res) => { this.setState({ allJobs: res.data});
+          })
+          .catch((err) => console.log(err));
+    }
 
     addFavHandler = (id)=>{
       const favs = [...this.state.favJobs];
@@ -103,6 +98,16 @@ class Container extends Component {
             </div>
 
             <div className="detailsSection">
+                <JobDetails
+                    company = {this.state.allJobs[0].company}
+                    type = {this.state.allJobs[0].type}
+                    title = {this.state.allJobs[0].title}
+                    description = {this.state.allJobs[0].description}
+                    location = {this.state.allJobs[0].location}
+                    company_logo = {this.state.allJobs[0].company_logo}
+                    company_url = {this.state.allJobs[0].company_url}
+                    url = {this.state.allJobs[0].url}
+                />
             </div>
           </div>
         )

@@ -1,0 +1,24 @@
+.jobCard {
+    display: inline;
+    width: 30%;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #888;
+    padding: 10px;
+    float: right;
+}
+
+.imageUrl {
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.companyUrl {
+    text-decoration: none;
+    margin-left: 10px;
+    size: 5px;
+}
+
+.title {
+    margin-left: 10px;
+}
