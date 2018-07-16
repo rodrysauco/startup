@@ -68,6 +68,12 @@ class Container extends Component {
           .then((res) => { this.setState({ allJobs: res.data});
           })
           .catch((err) => console.log(err));
+
+        this.hydrateStateWithLocalStorage();
+        window.addEventListener(
+            "beforeunload",
+            this.saveStateToLocalStorage.bind(this)
+        );
     }
 
     addFavHandler = (id)=>{
@@ -106,15 +112,6 @@ class Container extends Component {
        for (let key in this.state) {
          localStorage.setItem(key, JSON.stringify(this.state[key]));
        }
-    }
-
-
-    componentDidMount() {
-      this.hydrateStateWithLocalStorage();
-      window.addEventListener(
-        "beforeunload",
-        this.saveStateToLocalStorage.bind(this)
-      );
     }
 
     componentWillUnmount() {
