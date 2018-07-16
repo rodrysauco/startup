@@ -4,6 +4,7 @@ import JobRow from './JobRow/JobRow';
 import JobList from './JobList/JobList';
 import JobDetails from './JobDetails/JobDetails';
 
+import './container.css';
 
 
 class Container extends Component {
@@ -72,21 +73,64 @@ class Container extends Component {
     addFavHandler = (id)=>{
       const favs = [...this.state.favJobs];
       const newFav = this.state.allJobs.filter(job=>job.id === id);
-      const updateFavs = newFav.concat(favs);
-      this.setState({favJobs: updateFavs});
+      if(!favs.includes(newFav[0])){
+        const updateFavs = newFav.concat(favs);
+        this.setState({favJobs: updateFavs});
+        localStorage.setItem("favs", JSON.stringify(updateFavs));
+      }
     }
 
     removeFavHandler = (id)=>{
       const favs = [...this.state.favJobs];
       const updateFavs = favs.filter(job=>job.id !==id);
       this.setState({favJobs: updateFavs});
+      localStorage.setItem("favs", JSON.stringify(updateFavs));
+    }
+
+    hydrateStateWithLocalStorage() {
+      for (let key in this.state) {
+        if (localStorage.hasOwnProperty(key)) {
+          let value = localStorage.getItem(key);
+
+          try {
+            value = JSON.parse(value);
+            this.setState({ [key]: value });
+          } catch (e) {
+            this.setState({ [key]: value });
+          }
+        }
+      }
+    }
+
+    saveStateToLocalStorage() {
+       for (let key in this.state) {
+         localStorage.setItem(key, JSON.stringify(this.state[key]));
+       }
+    }
+
+
+    componentDidMount() {
+      this.hydrateStateWithLocalStorage();
+      window.addEventListener(
+        "beforeunload",
+        this.saveStateToLocalStorage.bind(this)
+      );
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener(
+        "beforeunload",
+        this.saveStateToLocalStorage.bind(this)
+      );
+      this.saveStateToLocalStorage();
     }
 
     render(){
         return(
-          <div>
-            <div className="searchSection">
-            </div>
+          <div className="container">
+            <header className="searchSection">
+              <h1>GitHub Jobs</h1>
+            </header>
 
             <div className="resultsSection">
               <JobList
