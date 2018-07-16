@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar/SearchBar';
-import JobRow from './JobRow/JobRow';
 import JobList from './JobList/JobList';
+import './container.css';
 import JobDetails from './JobDetails/JobDetails';
 import './container.css';
 
@@ -17,7 +17,8 @@ class Container extends Component {
                location : '',
                description : '',
                full_time: ''
-             }
+             },
+             jobDetail: []
            }
          this.apiCall = this.apiCall.bind(this);
     }
@@ -94,6 +95,19 @@ class Container extends Component {
       localStorage.setItem("favs", JSON.stringify(updateFavs));
     }
 
+    showJobDetailHandler = (job) => {
+      this.setState({jobDetail: job});
+    }
+
+    componentDidMount() {
+      this.hydrateStateWithLocalStorage();
+        window.addEventListener(
+          "beforeunload",
+          this.saveStateToLocalStorage.bind(this)
+        );
+      this.setState({jobDetail: []});
+    }
+
     hydrateStateWithLocalStorage() {
       for (let key in this.state) {
         if (localStorage.hasOwnProperty(key)) {
@@ -126,6 +140,26 @@ class Container extends Component {
 
 
     render(){
+        let showJobDetails;
+
+        if(Object.entries(this.state.jobDetail).length !== 0){
+          showJobDetails = (
+            <JobDetails
+                type = {this.state.jobDetail.type}
+                location = {this.state.jobDetail.location}
+                title = {this.state.jobDetail.title}
+                description = {this.state.jobDetail.description}
+                company = {this.state.jobDetail.company}
+                company_logo = {this.state.jobDetail.company_logo}
+                company_url = {this.state.jobDetail.company_url}
+                How_to_apply = {this.state.jobDetail.how_to_apply}
+                url = {this.state.jobDetail.url}
+            />);
+
+        }else {
+          null
+        }
+
         return(
           <div className="container col-12">
             <header className="header col-12">
@@ -139,31 +173,26 @@ class Container extends Component {
               searchB = {(event)=>this.getJobs()}
               search = {this.state.search}/>
 
-            <div className="resultsSection col-8">
+            <div className="resultsSection">
               <div className="list col-4">
                 <h3>Results ({this.state.allJobs.length})</h3>
                 <JobList
+                    showJobDetailHandler = {this.showJobDetailHandler}
                     toggleFav={this.addFavHandler}
                     jobs={this.state.allJobs}/>
               </div>
+
               <div className="list col-4">
                 <h3>My Favorites ({this.state.favJobs.length}) </h3>
                 <JobList
+                    showJobDetailHandler = {this.showJobDetailHandler}
                     toggleFav={this.removeFavHandler}
                     jobs={this.state.favJobs}/>
-              </div>
+                </div>
             </div>
-
-              {/*}  <JobDetails
-                    company = {this.state.allJobs[0].company}
-                    type = {this.state.allJobs[0].type}
-                    title = {this.state.allJobs[0].title}
-                    description = {this.state.allJobs[0].description}
-                    location = {this.state.allJobs[0].location}
-                    company_logo = {this.state.allJobs[0].company_logo}
-                    company_url = {this.state.allJobs[0].company_url}
-                    url = {this.state.allJobs[0].url}/> */}
-
+            <div className="detailsSection">
+                {showJobDetails}
+            </div>
           </div>
         )
     }

@@ -100,3 +100,9 @@ input:focus{
   outline: 0;
   color: #555;
 }
+
+.detailsSection {
+  display: block;
+  width: 700px;
+  margin: 0 auto;
+}

@@ -32,3 +32,9 @@
 a:hover{
   color: #339;
 }
+
+p:hover {color: #339};
+
+.pLink {
+  cursor: pointer;
+}
