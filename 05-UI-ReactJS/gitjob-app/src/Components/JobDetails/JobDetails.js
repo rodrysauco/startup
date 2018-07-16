@@ -18,6 +18,7 @@ const JobDetails = (props) => {
             />
             <JobApply
                 company_url = {props.company_url}
+                how_to_apply = {props.how_to_apply}
                 url = {props.url} 
             />
         </div>
