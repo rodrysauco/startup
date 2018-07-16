@@ -110,6 +110,7 @@ class Container extends Component {
     }
 
     saveStateToLocalStorage() {
+      this.setState({allJobs:[]});
        for (let key in this.state) {
          localStorage.setItem(key, JSON.stringify(this.state[key]));
        }
