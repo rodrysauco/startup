@@ -141,12 +141,18 @@ class Container extends Component {
             </header>
 
             <div className="resultsSection">
-              <JobList
-                  toggleFav={this.addFavHandler}
-                  jobs={this.state.allJobs}/>
-              <JobList
-                  toggleFav={this.removeFavHandler}
-                  jobs={this.state.favJobs}/>
+              <div className="list">
+                <h3>Results</h3>
+                <JobList
+                    toggleFav={this.addFavHandler}
+                    jobs={this.state.allJobs}/>
+              </div>
+              <div className="list">
+                <h3>My Favorites ({this.state.favJobs.length}) </h3>
+                <JobList
+                    toggleFav={this.removeFavHandler}
+                    jobs={this.state.favJobs}/>
+              </div>
             </div>
 
             <div className="detailsSection">

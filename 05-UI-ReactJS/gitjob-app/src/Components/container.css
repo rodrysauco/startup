@@ -1,5 +1,5 @@
 .resultsSection{
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   margin-left: 22%;
   margin-top: 40px;
@@ -17,4 +17,12 @@
   color: white;
   overflow: hidden;
   text-align: center;
+  box-shadow: 0 3px 10px #888;
+}
+
+.list{
+  display: inline;
+  float: left;
+  width: 28%;
+  margin: 10px;
 }
