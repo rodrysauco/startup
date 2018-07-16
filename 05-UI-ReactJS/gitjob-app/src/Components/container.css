@@ -76,3 +76,27 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #aaa;
 }
+
+
+
+button{
+  border: .5px solid #bbb;
+  padding: 4px;
+  background-color: white;
+  color: #444;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: #ccf;
+}
+
+button:focus{
+  outline:0;
+}
+
+input:focus{
+  outline: 0;
+  color: #555;
+}
