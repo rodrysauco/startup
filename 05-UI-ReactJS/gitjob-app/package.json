@@ -8,7 +8,8 @@
     "react": "^16.4.1", 
     "react-dom": "^16.4.1", 
     "react-scripts": "1.1.4" 
-  }, 
+  },
+  "proxy": "https://jobs.github.com/", 
   "scripts": { 
     "start": "react-scripts start", 
     "build": "react-scripts build", 

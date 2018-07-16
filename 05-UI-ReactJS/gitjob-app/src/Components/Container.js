@@ -44,7 +44,7 @@ class Container extends Component {
 
     getJobs = () =>{
       let data = {
-        url : 'https://jobs.github.com/positions.json?',
+        url : '/positions.json?',
         params : this.state.search
       };
       this.apiCall(data);
@@ -52,7 +52,7 @@ class Container extends Component {
     // End of search bar functions
 
     apiCall(config){
-      axios.get('https://cors.io/?'+ config.url,{
+      axios.get(config.url,{
         params : config.params
       })
       .then((response)=> {
