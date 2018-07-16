@@ -1,0 +1,40 @@
+.jobRow {
+    display: block;
+    width: 90%;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #888;
+    padding: 10px;
+    margin: 10px auto;
+    margin-bottom: 15px;
+    overflow: auto;
+}
+
+.jobTitle {
+    color: #222;
+    text-align: left;
+    text-decoration: none;
+    display: inline;
+    font-size: 20px;
+}
+
+.location {
+    display: block;
+}
+
+.company{
+  display: inline;
+}
+.fav{
+  display: inline;
+  float: right;
+}
+
+a:hover{
+  color: #339;
+}
+
+p:hover {color: #339};
+
+.pLink {
+  cursor: pointer;
+}
