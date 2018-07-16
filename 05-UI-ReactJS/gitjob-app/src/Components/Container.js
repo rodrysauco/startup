@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar/SearchBar';
-//import JobRow from './JobRow/JobRow';
+import JobRow from './JobRow/JobRow';
 import JobList from './JobList/JobList';
+import JobDetails from './JobDetails/JobDetails';
+import './container.css';
 
 
 class Container extends Component {
