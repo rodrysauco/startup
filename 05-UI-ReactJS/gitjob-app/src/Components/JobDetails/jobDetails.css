@@ -1,3 +1,9 @@
 .jobDetails {
+    display: inline-block;
     margin: 10px;
+    font-size: 14px;
+}
+.jobDetails p{
+    line-height: 18px;
+    font-family: Helvetica, sans-serif;
 }

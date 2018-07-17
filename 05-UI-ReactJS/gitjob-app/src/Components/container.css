@@ -34,6 +34,7 @@
   width: 50%;
   margin: 0 auto;
   margin-top: 40px;
+  margin-bottom: 15px;
 }
 
 .container{
@@ -52,7 +53,8 @@
 
 
 .detailsSection{
-
+  display: inline;
+  overflow: auto;
 }
 
 

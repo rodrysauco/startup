@@ -66,11 +66,6 @@ class Container extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://jobs.github.com/positions.json?description=python&location=sf&full_time=true')
-          .then((res) => { this.setState({ allJobs: res.data});
-          })
-          .catch((err) => console.log(err));
-
         this.hydrateStateWithLocalStorage();
         window.addEventListener(
             "beforeunload",
@@ -106,7 +101,12 @@ class Container extends Component {
       if(job.company_logo === null) {
         job['company_logo'] = "http://imgclasificados4.emol.com/96978920_0/243/F24412324522011810711017916592214144818922243.jpg";
       }
-      this.setState({jobDetail: job});
+
+      if(job.id === this.state.jobDetail.id) { 
+        this.setState({jobDetail: []})
+      }else {
+          this.setState({jobDetail: job});
+      }
     }
 
     hydrateStateWithLocalStorage() {
@@ -158,7 +158,7 @@ class Container extends Component {
             />);
 
         }else {
-            null
+            showJobDetails = null;
         }
 
         return(
