@@ -76,6 +76,13 @@ class Container extends Component {
             "beforeunload",
             this.saveStateToLocalStorage.bind(this)
         );
+
+        this.hydrateStateWithLocalStorage();
+        window.addEventListener(
+          "beforeunload",
+          this.saveStateToLocalStorage.bind(this)
+        );
+        this.setState({jobDetail: []});
     }
 
     addFavHandler = (id)=>{
@@ -96,22 +103,12 @@ class Container extends Component {
     }
 
     showJobDetailHandler = (job) => {
+      if(job.company_logo === null) {
+        job['company_logo'] = "http://imgclasificados4.emol.com/96978920_0/243/F24412324522011810711017916592214144818922243.jpg";
+      }
       this.setState({jobDetail: job});
     }
 
-    componentDidMount() {
-      this.hydrateStateWithLocalStorage();
-        window.addEventListener(
-          "beforeunload",
-          this.saveStateToLocalStorage.bind(this)
-        );
-      this.setState({jobDetail: []});
-    }
-
-<<<<<<< HEAD
-    
-=======
->>>>>>> 4915ffcdd8aa6a4b51f12fda616373780f15332e
     hydrateStateWithLocalStorage() {
       for (let key in this.state) {
         if (localStorage.hasOwnProperty(key)) {
@@ -161,7 +158,7 @@ class Container extends Component {
             />);
 
         }else {
-          null
+            null
         }
 
         return(

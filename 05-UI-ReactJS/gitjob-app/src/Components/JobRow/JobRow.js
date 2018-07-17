@@ -6,7 +6,6 @@ const jobRow = (props) => {
         <div className="jobRow">
             <p className="pLink"
                 onClick={props.showJobDetail}
-                className = "jobTitle"
                 href="">{props.title}
             </p>
             <h4 className = "location">{props.location}</h4>

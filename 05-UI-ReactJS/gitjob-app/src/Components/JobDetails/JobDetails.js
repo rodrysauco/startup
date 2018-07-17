@@ -9,7 +9,7 @@ const JobDetails = (props) => {
             <div className = "description">
                 <p className = "">{props.type} - {props.location}</p>
                 <h2 className = "title">{props.title}</h2>
-                <p>{props.description}</p>
+                <p dangerouslySetInnerHTML={{ __html: props.description }}></p>
                 <JobCard
                     company = {props.company}
                     company_logo = {props.company_logo}
