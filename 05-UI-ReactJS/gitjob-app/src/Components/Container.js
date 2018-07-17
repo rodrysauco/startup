@@ -87,6 +87,7 @@ class Container extends Component {
         );
       this.setState({jobDetail: []});
     }
+
     
     hydrateStateWithLocalStorage() {
       for (let key in this.state) {
