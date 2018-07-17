@@ -33,3 +33,10 @@
   color:blue;
   cursor: pointer;
 }
+
+.material-icons{
+  float: right;
+}
+.material-icons:hover{
+  cursor: pointer;
+}

@@ -5,7 +5,9 @@ import './jobDetails.css';
 
 const JobDetails = (props) => {
     return(
-        <div>
+        <div className="jobContainer">
+            <h2 className="JBdetail">Job Details</h2>
+            <hr/>
             <div className = "jobDetails">
                 <p>{props.type} - {props.location}</p>
                 <h2 >{props.title}</h2>
