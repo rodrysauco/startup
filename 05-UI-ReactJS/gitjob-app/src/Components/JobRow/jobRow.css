@@ -29,12 +29,7 @@
   float: right;
 }
 
-a:hover{
-  color: #339;
-}
-
-p:hover {color: #339};
-
-.pLink {
+.pLink:hover {
+  color:blue;
   cursor: pointer;
 }

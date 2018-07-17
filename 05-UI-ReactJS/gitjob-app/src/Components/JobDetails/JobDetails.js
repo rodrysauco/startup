@@ -5,11 +5,13 @@ import './jobDetails.css';
 
 const JobDetails = (props) => {
     return(
-        <div className = "jobDetails">
-            <div className = "jDDescription">
+        <div>
+            <div className = "jobDetails">
                 <p>{props.type} - {props.location}</p>
                 <h2 >{props.title}</h2>
                 <p dangerouslySetInnerHTML={{ __html: props.description }}></p>
+            </div>
+            <div className="jobSubdetail">
                 <JobCard
                     company = {props.company}
                     company_logo = {props.company_logo}

@@ -4,7 +4,7 @@ import './jobRow.css';
 const jobRow = (props) => {
     return(
         <div className="jobRow">
-            <p className="pLink"
+            <p className="pLink jobTitle"
                 onClick={props.showJobDetail}
                 href="">{props.title}
             </p>
