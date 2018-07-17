@@ -6,12 +6,12 @@ const jobRow = (props) => {
         <div className="jobRow">
             <p className="pLink"
                 onClick={props.showJobDetail}
-                className = "title"
+                className = "jobTitle"
                 href="">{props.title}
             </p>
             <h4 className = "location">{props.location}</h4>
             <p className = "company">{props.company} - {props.type}</p>
-            <button className ="fav" onClick={props.toggleFav}>Fav</button>        
+            <button className ="fav" onClick={props.toggleFav}>Fav</button>
         </div>
     )
 }

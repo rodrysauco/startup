@@ -5,10 +5,13 @@
     box-shadow: 0 2px 3px #888;
     padding: 10px;
     margin: 10px auto;
+    margin-bottom: 15px;
+    overflow: auto;
 }
 
-.title {
+.jobTitle {
     color: #222;
+    text-align: left;
     text-decoration: none;
     display: inline;
     font-size: 20px;

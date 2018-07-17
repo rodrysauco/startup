@@ -1,0 +1,29 @@
+.searchSection{
+  width: 47%;
+  padding: 10px 2px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #888;
+  overflow: auto;
+}
+
+.searchHeader{
+  width: 50%;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.searchFields{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.searchButton{
+  display: inline-block;
+  float: right;
+}
+
+.inputField{
+  margin: 10px 10px 10px 3px;
+}

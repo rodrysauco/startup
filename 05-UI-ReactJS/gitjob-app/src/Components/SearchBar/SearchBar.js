@@ -1,15 +1,17 @@
 import React from 'react';
+import './searchBar.css';
 
 const SearchBar = (props) =>{
   return(
     <div className = "searchSection">
-      <div className = "header">
+      <div className = "searchHeader">
         <h3 className = "searchHeader">
           Find your job!
         </h3>
       </div>
       <div className = "searchFields">
-        <input 
+        <input
+          className="inputField"
           name = "location"
           type = "text"
           value = {props.search.location}
@@ -17,6 +19,7 @@ const SearchBar = (props) =>{
           placeholder = "Location"
         />
         <input
+          className="inputField"
           name = "description"
           type = "text"
           value = {props.search.description}
@@ -32,6 +35,7 @@ const SearchBar = (props) =>{
           /> Full time?
         </label>
         <input
+          className="searchButton"
           name = "submit"
           type = "submit"
           value = "Search"
@@ -41,4 +45,4 @@ const SearchBar = (props) =>{
     </div>
     )
 }
-export default SearchBar; 
+export default SearchBar;

@@ -8,20 +8,21 @@ import './container.css';
 
 
 class Container extends Component {
-    constructor(){
-      super();
-      this.state = {
-            allJobs : [],
-            favJobs : [],
-            search: {
-              location : '',
-              description : '',
-              full_time: ''
-            },
-            jobDetail: []
-          }
-        this.apiCall = this.apiCall.bind(this);
-      }
+    constructor(props){
+       super(props);
+       this.state = {
+             allJobs : [],
+             favJobs : [],
+             search: {
+               location : '',
+               description : '',
+               full_time: ''
+             },
+             jobDetail: []
+           }
+         this.apiCall = this.apiCall.bind(this);
+    }
+
     // Search Bar functions
     newSearchLocation = (event)=>{
       let newSearch = {...this.state.search};
@@ -34,7 +35,7 @@ class Container extends Component {
       newSearch.description = event.target.value;
       this.setState({search : newSearch});
     }
-    
+
     newSearchfullTime = (event)=>{
       let newSearch = {...this.state.search};
       newSearch.full_time = event.target.checked;
@@ -43,36 +44,55 @@ class Container extends Component {
 
     getJobs = () =>{
       let data = {
-        url : 'https://jobs.github.com/positions.json?',
+        url : '/positions.json?',
         params : this.state.search
       };
       this.apiCall(data);
     }
     // End of search bar functions
+
     apiCall(config){
-      axios.get('https://cors.io/?'+ config.url,{
+      axios.get(config.url,{
         params : config.params
       })
       .then((response)=> {
         console.log(response.data);
         this.setState({allJobs : response.data});
+        this.setState({search:{location: '',description: '', full_time: ''}})
       })
       .catch(function (error){
         console.log(error);
       });
     }
 
+    componentDidMount() {
+        axios.get('https://jobs.github.com/positions.json?description=python&location=sf&full_time=true')
+          .then((res) => { this.setState({ allJobs: res.data});
+          })
+          .catch((err) => console.log(err));
+
+        this.hydrateStateWithLocalStorage();
+        window.addEventListener(
+            "beforeunload",
+            this.saveStateToLocalStorage.bind(this)
+        );
+    }
+
     addFavHandler = (id)=>{
-      const favs = [...this.state.favJobs];
+      //const favs = [...this.state.favJobs];
       const newFav = this.state.allJobs.filter(job=>job.id === id);
-      const updateFavs = newFav.concat(favs);
-      this.setState({favJobs: updateFavs});
+      if(!this.state.favJobs.includes(newFav[0])){
+        const updateFavs = newFav.concat(this.state.favJobs);
+        this.setState({favJobs: updateFavs});
+        localStorage.setItem("favs", JSON.stringify(updateFavs));
+      }
     }
 
     removeFavHandler = (id)=>{
       const favs = [...this.state.favJobs];
       const updateFavs = favs.filter(job=>job.id !==id);
       this.setState({favJobs: updateFavs});
+      localStorage.setItem("favs", JSON.stringify(updateFavs));
     }
 
     showJobDetailHandler = (job) => {
@@ -88,7 +108,10 @@ class Container extends Component {
       this.setState({jobDetail: []});
     }
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 4915ffcdd8aa6a4b51f12fda616373780f15332e
     hydrateStateWithLocalStorage() {
       for (let key in this.state) {
         if (localStorage.hasOwnProperty(key)) {
@@ -105,6 +128,7 @@ class Container extends Component {
     }
 
     saveStateToLocalStorage() {
+      this.setState({allJobs:[]});
        for (let key in this.state) {
          localStorage.setItem(key, JSON.stringify(this.state[key]));
        }
@@ -118,13 +142,13 @@ class Container extends Component {
       this.saveStateToLocalStorage();
     }
 
-   
+
     render(){
         let showJobDetails;
-        
+
         if(Object.entries(this.state.jobDetail).length !== 0){
           showJobDetails = (
-            <JobDetails 
+            <JobDetails
                 type = {this.state.jobDetail.type}
                 location = {this.state.jobDetail.location}
                 title = {this.state.jobDetail.title}
@@ -139,27 +163,36 @@ class Container extends Component {
         }else {
           null
         }
-      
+
         return(
-          <div className = "container">
-            <header className="searchSection">
+          <div className="container col-12">
+            <header className="header col-12">
               <h1>GitHub Jobs</h1>
             </header>
-            <SearchBar 
+
+            <SearchBar
               lInput = {(event)=>this.newSearchLocation(event)}
               dInput = {(event)=>this.newSearchDescription(event)}
               cInput = {(event)=>this.newSearchfullTime(event)}
               searchB = {(event)=>this.getJobs()}
               search = {this.state.search}/>
+
             <div className="resultsSection">
-              <JobList
-                  showJobDetailHandler = {this.showJobDetailHandler}
-                  toggleFav={this.addFavHandler}
-                  jobs={this.state.allJobs}/>
-              <JobList
-                  showJobDetailHandler = {this.showJobDetailHandler}
-                  toggleFav={this.removeFavHandler}
-                  jobs={this.state.favJobs}/>
+              <div className="list col-4">
+                <h3>Results ({this.state.allJobs.length})</h3>
+                <JobList
+                    showJobDetailHandler = {this.showJobDetailHandler}
+                    toggleFav={this.addFavHandler}
+                    jobs={this.state.allJobs}/>
+              </div>
+
+              <div className="list col-4">
+                <h3>My Favorites ({this.state.favJobs.length}) </h3>
+                <JobList
+                    showJobDetailHandler = {this.showJobDetailHandler}
+                    toggleFav={this.removeFavHandler}
+                    jobs={this.state.favJobs}/>
+                </div>
             </div>
             <div className="detailsSection">
                 {showJobDetails}
