@@ -26,7 +26,7 @@ const SearchBar = (props) =>{
           onChange = {props.dInput}
           placeholder = "Job Description"
         />
-        <label>
+        <label className="inputField">
           <input
             name = "isFullTime"
             type = "checkbox"

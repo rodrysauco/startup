@@ -44,7 +44,7 @@ class Container extends Component {
 
     getJobs = () =>{
       let data = {
-        url : 'https://jobs.github.com/positions.json?',
+        url : '/positions.json?',
         params : this.state.search
       };
       this.apiCall(data);
@@ -52,10 +52,13 @@ class Container extends Component {
     // End of search bar functions
 
     apiCall(config){
-      axios.get('https://cors.io/?'+ config.url,{
+      axios.get(config.url,{
         params : config.params
       })
       .then((response)=> {
+        response.data.map((job) => {  //Add isFav property
+            return job.isFav = "false";
+          })
         console.log(response.data);
         this.setState({allJobs : response.data});
         this.setState({search:{location: '',description: '', full_time: ''}})
@@ -66,16 +69,18 @@ class Container extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://jobs.github.com/positions.json?description=python&location=sf&full_time=true')
-          .then((res) => { this.setState({ allJobs: res.data});
-          })
-          .catch((err) => console.log(err));
-
         this.hydrateStateWithLocalStorage();
         window.addEventListener(
             "beforeunload",
             this.saveStateToLocalStorage.bind(this)
         );
+
+        this.hydrateStateWithLocalStorage();
+        window.addEventListener(
+          "beforeunload",
+          this.saveStateToLocalStorage.bind(this)
+        );
+        this.setState({jobDetail: []});
     }
 
     addFavHandler = (id)=>{
@@ -86,6 +91,15 @@ class Container extends Component {
         this.setState({favJobs: updateFavs});
         localStorage.setItem("favs", JSON.stringify(updateFavs));
       }
+      newFav[0].isFav = true;  // set isFav true
+      const newJob = {};
+      Object.assign(newJob, newFav);
+      const addIsfav = this.state.allJobs.slice(id); // delete job without fav
+      addIsfav.concat(newJob);
+      this.setState({
+        allJobs: addIsfav,
+      })
+      console.log(this.state.allJobs);
     }
 
     removeFavHandler = (id)=>{
@@ -93,19 +107,28 @@ class Container extends Component {
       const updateFavs = favs.filter(job=>job.id !==id);
       this.setState({favJobs: updateFavs});
       localStorage.setItem("favs", JSON.stringify(updateFavs));
+      //-----
+      favs[0].isFav = false; // set isFav false;
+      const newJob = {};
+      Object.assign(newJob, favs);
+      const removeIsfav = this.state.allJobs.slice(id); 
+      removeIsfav.concat(newJob);
+      this.setState({
+        allJobs: removeIsfav,
+      })
+      console.log(this.state.allJobs)
     }
 
     showJobDetailHandler = (job) => {
-      this.setState({jobDetail: job});
-    }
+      if(job.company_logo === null) {
+        job['company_logo'] = "http://imgclasificados4.emol.com/96978920_0/243/F24412324522011810711017916592214144818922243.jpg";
+      }
 
-    componentDidMount() {
-      this.hydrateStateWithLocalStorage();
-        window.addEventListener(
-          "beforeunload",
-          this.saveStateToLocalStorage.bind(this)
-        );
-      this.setState({jobDetail: []});
+      if(job.id === this.state.jobDetail.id) { 
+        this.setState({jobDetail: []})
+      }else {
+          this.setState({jobDetail: job});
+      }
     }
 
     hydrateStateWithLocalStorage() {
@@ -157,7 +180,7 @@ class Container extends Component {
             />);
 
         }else {
-          null
+            showJobDetails = null;
         }
 
         return(
@@ -191,6 +214,7 @@ class Container extends Component {
                 </div>
             </div>
             <div className="detailsSection">
+
                 {showJobDetails}
             </div>
           </div>

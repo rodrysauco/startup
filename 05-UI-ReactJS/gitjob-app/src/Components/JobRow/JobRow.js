@@ -2,16 +2,20 @@ import React from 'react';
 import './jobRow.css';
 
 const jobRow = (props) => {
+    let showIcon = 'favorite_border';
+    if(props.isFav === true) {
+        showIcon = 'favorite';
+    }
+    
     return(
         <div className="jobRow">
-            <p className="pLink"
+            <p className="pLink jobTitle"
                 onClick={props.showJobDetail}
-                className = "jobTitle"
                 href="">{props.title}
             </p>
             <h4 className = "location">{props.location}</h4>
             <p className = "company">{props.company} - {props.type}</p>
-            <button className ="fav" onClick={props.toggleFav}>Fav</button>
+            <i className ="material-icons" onClick={props.toggleFav}> {showIcon} </i>
         </div>
     )
 }
