@@ -24,3 +24,12 @@
 .title {
     display: block;
 }
+
+@media screen and (max-width: 600px){
+  .jobCard{
+    float: none;
+    width: 60%;
+    margin: 0px;
+    margin-right: 0px;
+  }
+}

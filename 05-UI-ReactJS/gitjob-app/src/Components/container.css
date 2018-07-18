@@ -57,7 +57,7 @@
 }
 
 .searchSection{
-  width: 50%;
+  width: 600px;
   padding: 10px 2px;
   margin: 20px auto;
   display: block;
@@ -65,15 +65,22 @@
   box-shadow: 0 2px 3px #888;
   overflow: auto;
 }
-/*========== Medium Screens ==========*/
-@media screen and (min-width: 500px) and (max-width: 789px){
 
-}
 /*========== Small Screens ==========*/
-@media screen and (max-width: 499px){
+@media screen and (max-width: 610px){
   .searchSection{
     width: 80%;
     margin-left: 10%;
+  }
+  .list{
+    display: inline;
+    width: 100%;
+  }
+  .detailsSection{
+    overflow: hidden;
+  }
+  .resultsSection {
+    margin-top: 0px;
   }
 }
 /*======== Scroll Bar Styles================*/
