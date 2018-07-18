@@ -11,8 +11,9 @@
 
 @media screen and (max-width: 600px){
   .jobApply{
-    width: 30%;
+    width: 100%;
     margin: 0;
     height: auto;
+    text-align: center;
   }
 }
