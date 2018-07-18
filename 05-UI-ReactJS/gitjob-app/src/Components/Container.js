@@ -56,6 +56,9 @@ class Container extends Component {
         params : config.params
       })
       .then((response)=> {
+        response.data.map((job) => {  //Add isFav property
+            return job.isFav = "false";
+          })
         console.log(response.data);
         this.setState({allJobs : response.data});
         this.setState({search:{location: '',description: '', full_time: ''}})
@@ -88,6 +91,15 @@ class Container extends Component {
         this.setState({favJobs: updateFavs});
         localStorage.setItem("favs", JSON.stringify(updateFavs));
       }
+      newFav[0].isFav = true;  // set isFav true
+      const newJob = {};
+      Object.assign(newJob, newFav);
+      const addIsfav = this.state.allJobs.slice(id); // delete job without fav
+      addIsfav.concat(newJob);
+      this.setState({
+        allJobs: addIsfav,
+      })
+      console.log(this.state.allJobs);
     }
 
     removeFavHandler = (id)=>{
@@ -95,6 +107,16 @@ class Container extends Component {
       const updateFavs = favs.filter(job=>job.id !==id);
       this.setState({favJobs: updateFavs});
       localStorage.setItem("favs", JSON.stringify(updateFavs));
+      //-----
+      favs[0].isFav = false; // set isFav false;
+      const newJob = {};
+      Object.assign(newJob, favs);
+      const removeIsfav = this.state.allJobs.slice(id); 
+      removeIsfav.concat(newJob);
+      this.setState({
+        allJobs: removeIsfav,
+      })
+      console.log(this.state.allJobs)
     }
 
     showJobDetailHandler = (job) => {
@@ -192,6 +214,7 @@ class Container extends Component {
                 </div>
             </div>
             <div className="detailsSection">
+
                 {showJobDetails}
             </div>
           </div>
