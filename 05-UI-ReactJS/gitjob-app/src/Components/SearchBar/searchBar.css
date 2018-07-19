@@ -11,12 +11,18 @@
 
 .searchButton{
   display: inline-block;
-  float: right;
+  margin-left: 8px;
+  padding: 5px;
+}
+
+.searchButton:hover{
+  cursor: pointer;
 }
 
 .inputField{
   margin: 10px 10px 10px 3px;
 }
+
 @media screen and (max-width: 600px){
   .searchFields{
     text-align: center;
@@ -25,9 +31,18 @@
   .inputField{
     width: 100%;
     box-sizing: border-box;
+    padding: 5px;
+  }
+  .labelField{
+    width: 100%;
+    text-align: center;
+    padding: 10px;
   }
   .searchButton{
+    display: inline-block;
     float: none;
-    margin-left: 40%;
+    position: relative;
+    margin: 10px;
+    padding: 5px;
   }
 }
