@@ -3,8 +3,15 @@ import JobRow from '../JobRow/JobRow';
 import './jobList.css';
 
 const JobList = (props)=>{
+  let noResults;
+  if(props.results===0){
+    noResults = (
+      <p className="no-results">No results found</p>
+    )
+  }
   return(
     <div className="JobList">
+      {noResults}
       {props.jobs.map((job)=>{
         return <JobRow
           key={job.id}

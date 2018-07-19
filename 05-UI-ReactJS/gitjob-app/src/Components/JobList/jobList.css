@@ -13,6 +13,11 @@
   display: inline;
 }
 
+.no-results{
+  margin: 20px;
+  color: #777;
+}
+
 @media screen and (max-width: 499px){
   .JobList{
     margin-top: 5px;

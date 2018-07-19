@@ -18,8 +18,7 @@ class Container extends Component {
                description : '',
                full_time: ''
              },
-             jobDetail: [],
-             showResults : false
+             jobDetail: []
            }
          this.apiCall = this.apiCall.bind(this);
     }
@@ -60,7 +59,7 @@ class Container extends Component {
         response.data.map((job) => {  //Add isFav property
             return job.isFav = "false";
           })
-        
+
         // Refactor
         //-----------------------
         let i = 0;
@@ -83,7 +82,7 @@ class Container extends Component {
         console.log(response.data);
         this.setState({allJobs : response.data});
         this.setState({search:{location: '',description: '', full_time: ''}})
-        
+
       })
       .catch(function (error){
         console.log(error);
@@ -91,21 +90,16 @@ class Container extends Component {
     }
 
     componentDidMount() {
-        this.hydrateStateWithLocalStorage();
+        this.updateStateWithLocalStorage(); //sets state to saved state
         window.addEventListener(
             "beforeunload",
             this.saveStateToLocalStorage.bind(this)
         );
 
-        this.hydrateStateWithLocalStorage();
-        window.addEventListener(
-          "beforeunload",
-          this.saveStateToLocalStorage.bind(this)
-        );
         this.setState({jobDetail: []});
     }
 
-    addFavHandler = (id)=>{
+    addFavHandler = (id)=>{ //Adds job to favJobs state
       //const favs = [...this.state.favJobs];
       const newFav = this.state.allJobs.filter(job=>job.id === id);
       if(!this.state.favJobs.includes(newFav[0])){
@@ -114,54 +108,23 @@ class Container extends Component {
         this.setState({favJobs: updateFavs});
         localStorage.setItem("favs", JSON.stringify(updateFavs));
       }
-<<<<<<< HEAD
-      /*newFav[0].isFav = true;  // set isFav true
-      const newJob = {};
-      Object.assign(newJob, newFav);
-      const addIsfav = this.state.allJobs.slice(id); // delete job without fav
-      addIsfav.concat(newJob);
-      this.setState({
-        allJobs: addIsfav,
-      })
-      console.log(this.state.allJobs);*/
-=======
->>>>>>> 59a67badac53d841048dd59dc0f4390ede4e7da8
     }
 
-    removeFavHandler = (id)=>{
+    removeFavHandler = (id)=>{  // removes job from favJobs state
       const favs = [...this.state.favJobs];
-<<<<<<< HEAD
-      let jobUnfav = favs.filter(job=>job.id===id);
-      jobUnfav[0].isFav = false;
-      favs[favs.indexOf(jobUnfav)] = jobUnfav;
-      const updateFavs = favs.filter(job=>job.id !==id);
-      this.setState({favJobs: updateFavs});
-      localStorage.setItem("favs", JSON.stringify(updateFavs));
-      //-----
-    /*  favs[0].isFav = false; // set isFav false;
-      const newJob = {};
-      Object.assign(newJob, favs);
-      const removeIsfav = this.state.allJobs.slice(id);
-      removeIsfav.concat(newJob);
-=======
-      const updateAlljobs = this.state.allJobs; 
-        
+      const updateAlljobs = this.state.allJobs;
+
       updateAlljobs.map( jobAll => {
           if(jobAll.id === id){
             jobAll.isFav = false;
           }
       })
->>>>>>> 59a67badac53d841048dd59dc0f4390ede4e7da8
       this.setState({
         allJobs : updateAlljobs,
       })
-<<<<<<< HEAD
-      console.log(this.state.allJobs)*/
-=======
-      const updateFavs = favs.filter(job=>job.id !==id);  
+      const updateFavs = favs.filter(job=>job.id !==id);
       this.setState({favJobs: updateFavs});
       localStorage.setItem("favs", JSON.stringify(updateFavs));
->>>>>>> 59a67badac53d841048dd59dc0f4390ede4e7da8
     }
 
     showJobDetailHandler = (job) => {
@@ -176,7 +139,7 @@ class Container extends Component {
       }
     }
 
-    hydrateStateWithLocalStorage() {
+    updateStateWithLocalStorage() { // sets state to saved state in local storage
       for (let key in this.state) {
         if (localStorage.hasOwnProperty(key)) {
           let value = localStorage.getItem(key);
@@ -191,8 +154,8 @@ class Container extends Component {
       }
     }
 
-    saveStateToLocalStorage() {
-       this.setState({allJobs:[]});
+    saveStateToLocalStorage() { //saves current state to local storage
+      this.setState({allJobs:[]});
        for (let key in this.state) {
          localStorage.setItem(key, JSON.stringify(this.state[key]));
        }
@@ -247,7 +210,8 @@ class Container extends Component {
                 <JobList
                     showJobDetailHandler = {this.showJobDetailHandler}
                     toggleFav={this.addFavHandler}
-                    jobs={this.state.allJobs}/>
+                    jobs={this.state.allJobs}
+                    results={this.state.allJobs.length}/>
               </div>
 
               <div className="list col-4">
@@ -255,11 +219,11 @@ class Container extends Component {
                 <JobList
                     showJobDetailHandler = {this.showJobDetailHandler}
                     toggleFav={this.removeFavHandler}
-                    jobs={this.state.favJobs}/>
+                    jobs={this.state.favJobs}
+                    />
                 </div>
             </div>
             <div className="detailsSection">
-
                 {showJobDetails}
             </div>
             <footer className="footer col-12">
