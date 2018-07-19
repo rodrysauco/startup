@@ -56,12 +56,34 @@ class Container extends Component {
         params : config.params
       })
       .then((response)=> {
-        response.data.map((job,) => {  //Add isFav property
+        response.data.map((job) => {  //Add isFav property
             return job.isFav = "false";
           })
+        
+        // Refactor
+        //---------------------------------------------------------------------
+        let i = 0;
+        let j = 0;
+
+        while(response.data.length > i)
+        {
+          while(this.state.favJobs.length > j)
+          {
+            if(response.data[i].id === this.state.favJobs[j].id)
+            {
+              response.data[i].isFav = true;
+            }
+            j++;
+          }
+          j=0;
+          i++;
+        }
+
+        //----------------------------------------------------------------------
         console.log(response.data);
         this.setState({allJobs : response.data});
         this.setState({search:{location: '',description: '', full_time: ''}})
+        
       })
       .catch(function (error){
         console.log(error);
@@ -112,7 +134,7 @@ class Container extends Component {
       favRemove[0].isFav = false; // set isFav false;
       const newJob = {};
       Object.assign(newJob, favRemove[0]);
-      const removeIsfav = this.state.allJobs.slice(id); 
+      const removeIsfav = this.state.allJobs.filter(job => job.id !== id); 
       removeIsfav.concat(newJob);
       this.setState({
         allJobs: removeIsfav,
