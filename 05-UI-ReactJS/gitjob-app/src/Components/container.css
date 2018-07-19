@@ -52,6 +52,12 @@
   box-shadow: 0 2px 3px #888;
   overflow: auto;
 }
+.footer{
+  text-align: center;
+  font-style: italic;
+  color: #c1c4cc;
+  position: relative;
+}
 
 /*========== Small Screens ==========*/
 @media screen and (max-width: 610px){

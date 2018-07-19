@@ -16,6 +16,7 @@
 .no-results{
   margin: 20px;
   color: #777;
+  font-style: italic;
 }
 
 @media screen and (max-width: 499px){

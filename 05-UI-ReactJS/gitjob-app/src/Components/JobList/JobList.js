@@ -6,7 +6,7 @@ const JobList = (props)=>{
   let noResults;
   if(props.results===0){
     noResults = (
-      <p className="no-results">No results found</p>
+      <p className="no-results">No results found :(</p>
     )
   }
   return(
