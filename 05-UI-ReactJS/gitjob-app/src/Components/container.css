@@ -1,0 +1,122 @@
+
+@media only screen and (max-width: 500px) {
+  /* For mobile phones: */
+  div{
+      display: block;
+      width: 100%;
+  }
+}
+/*========== Normal Screens ==========*/
+.header{
+  background-color: #223;
+  padding: 0px 10px;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 3px 10px #888;
+}
+
+.resultsSection {
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+.container{
+  margin: 0 auto;
+  width: 100%;
+}
+
+.list{
+  display: inline;
+  float: left;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.detailsSection{
+  margin-top: 35px;
+  margin-left: 10%;
+  width: 80%;
+  display: inline-block;
+  overflow: auto;
+}
+
+.searchSection{
+  width: 600px;
+  padding: 10px 2px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #888;
+  overflow: auto;
+}
+.footer{
+  text-align: center;
+  font-style: italic;
+  color: #c1c4cc;
+  position: relative;
+}
+
+/*========== Small Screens ==========*/
+@media screen and (max-width: 610px){
+  .searchSection{
+    width: 80%;
+    margin-left: 10%;
+  }
+  .list{
+    display: inline;
+    width: 100%;
+  }
+  .detailsSection{
+    overflow: hidden;
+  }
+  .resultsSection {
+    margin-top: 0px;
+  }
+}
+/*======== Scroll Bar Styles================*/
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #bbb;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+
+
+button{
+  border: .5px solid #bbb;
+  padding: 4px;
+  background-color: white;
+  color: #444;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: #ccf;
+}
+
+button:focus{
+  outline:0;
+}
+
+input:focus{
+  outline: 0;
+  color: #555;
+}
