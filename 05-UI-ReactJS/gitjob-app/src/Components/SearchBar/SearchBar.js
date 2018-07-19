@@ -5,7 +5,7 @@ const SearchBar = (props) =>{
   return(
     <div className = "searchSection">
       <div className = "searchHeader">
-        <h3 className = "searchHeader">
+        <h3 className = "searchTitle">
           Find your job!
         </h3>
       </div>
@@ -26,7 +26,7 @@ const SearchBar = (props) =>{
           onChange = {props.dInput}
           placeholder = "Job Description"
         />
-        <label>
+        <label className="labelField">
           <input
             name = "isFullTime"
             type = "checkbox"

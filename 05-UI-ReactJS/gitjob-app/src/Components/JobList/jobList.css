@@ -8,8 +8,20 @@
   float: left;
 }
 .listTitle{
-  position: fixed;
   text-align: center;
   background-color: white;
   display: inline;
+}
+
+.no-results{
+  margin: 20px;
+  color: #777;
+  font-style: italic;
+}
+
+@media screen and (max-width: 499px){
+  .JobList{
+    margin-top: 5px;
+    float: 0;
+  }
 }
