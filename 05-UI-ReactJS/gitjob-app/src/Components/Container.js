@@ -18,7 +18,8 @@ class Container extends Component {
                description : '',
                full_time: ''
              },
-             jobDetail: []
+             jobDetail: [],
+             showResults : false
            }
          this.apiCall = this.apiCall.bind(this);
     }
@@ -87,11 +88,12 @@ class Container extends Component {
       //const favs = [...this.state.favJobs];
       const newFav = this.state.allJobs.filter(job=>job.id === id);
       if(!this.state.favJobs.includes(newFav[0])){
+        newFav[0].isFav = true;
         const updateFavs = newFav.concat(this.state.favJobs);
         this.setState({favJobs: updateFavs});
         localStorage.setItem("favs", JSON.stringify(updateFavs));
       }
-      newFav[0].isFav = true;  // set isFav true
+      /*newFav[0].isFav = true;  // set isFav true
       const newJob = {};
       Object.assign(newJob, newFav);
       const addIsfav = this.state.allJobs.slice(id); // delete job without fav
@@ -99,24 +101,27 @@ class Container extends Component {
       this.setState({
         allJobs: addIsfav,
       })
-      console.log(this.state.allJobs);
+      console.log(this.state.allJobs);*/
     }
 
     removeFavHandler = (id)=>{
       const favs = [...this.state.favJobs];
+      let jobUnfav = favs.filter(job=>job.id===id);
+      jobUnfav[0].isFav = false;
+      favs[favs.indexOf(jobUnfav)] = jobUnfav;
       const updateFavs = favs.filter(job=>job.id !==id);
       this.setState({favJobs: updateFavs});
       localStorage.setItem("favs", JSON.stringify(updateFavs));
       //-----
-      favs[0].isFav = false; // set isFav false;
+    /*  favs[0].isFav = false; // set isFav false;
       const newJob = {};
       Object.assign(newJob, favs);
-      const removeIsfav = this.state.allJobs.slice(id); 
+      const removeIsfav = this.state.allJobs.slice(id);
       removeIsfav.concat(newJob);
       this.setState({
         allJobs: removeIsfav,
       })
-      console.log(this.state.allJobs)
+      console.log(this.state.allJobs)*/
     }
 
     showJobDetailHandler = (job) => {
@@ -124,7 +129,7 @@ class Container extends Component {
         job['company_logo'] = "http://imgclasificados4.emol.com/96978920_0/243/F24412324522011810711017916592214144818922243.jpg";
       }
 
-      if(job.id === this.state.jobDetail.id) { 
+      if(job.id === this.state.jobDetail.id) {
         this.setState({jobDetail: []})
       }else {
           this.setState({jobDetail: job});
@@ -147,7 +152,7 @@ class Container extends Component {
     }
 
     saveStateToLocalStorage() {
-      this.setState({allJobs:[]});
+       this.setState({allJobs:[]});
        for (let key in this.state) {
          localStorage.setItem(key, JSON.stringify(this.state[key]));
        }
