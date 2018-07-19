@@ -4,3 +4,44 @@
     box-shadow: 0 3px 10px #888;
     overflow:visible;
 }
+<<<<<<< HEAD
+=======
+.jobDetails p{
+    line-height: 18px;
+    font-family: Helvetica, sans-serif;
+}
+.jobSubdetail{
+    width: 35%;
+    float: right;
+}
+
+.jobContainer{
+    padding: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #888;
+}
+
+.JBdetail{
+    padding-left: 20px;
+}
+
+hr{
+    border : .5px solid #eee;
+    
+}
+
+@media screen and (max-width: 600px){
+  .jobDetails{
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .jobContainer{
+    box-sizing: border-box;
+  }
+  .jobSubdetail{
+    margin-top: 0;
+    width: 100%;
+    float: none;
+  }
+}
+>>>>>>> 59a67badac53d841048dd59dc0f4390ede4e7da8

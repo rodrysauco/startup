@@ -14,16 +14,16 @@ const JobDetails = (props) => {
                 <p dangerouslySetInnerHTML={{ __html: props.description }}></p>
             </div>
             <div className="jobSubdetail">
-                <JobCard
-                    company = {props.company}
-                    company_logo = {props.company_logo}
-                    company_url = {props.company_url}
-                />
-                <JobApply 
-                    company_url = {props.company_url}
-                    how_to_apply = {props.how_to_apply}
-                    url = {props.url}
-                />
+              <JobApply 
+                company_url = {props.company_url}
+                how_to_apply = {props.how_to_apply}
+                url = {props.url}
+              />
+              <JobCard
+                company = {props.company}
+                company_logo = {props.company_logo}
+                company_url = {props.company_url}
+              />
             </div>
         </div>
     )

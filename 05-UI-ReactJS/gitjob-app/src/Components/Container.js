@@ -60,9 +60,30 @@ class Container extends Component {
         response.data.map((job) => {  //Add isFav property
             return job.isFav = "false";
           })
+        
+        // Refactor
+        //-----------------------
+        let i = 0;
+        let j = 0;
+
+        while(response.data.length > i)
+        {
+          while(this.state.favJobs.length > j)
+          {
+            if(response.data[i].id === this.state.favJobs[j].id)
+            {
+              response.data[i].isFav = true;
+            }
+            j++;
+          }
+          j=0;
+          i++;
+        }
+        //------------------------
         console.log(response.data);
         this.setState({allJobs : response.data});
         this.setState({search:{location: '',description: '', full_time: ''}})
+        
       })
       .catch(function (error){
         console.log(error);
@@ -93,6 +114,7 @@ class Container extends Component {
         this.setState({favJobs: updateFavs});
         localStorage.setItem("favs", JSON.stringify(updateFavs));
       }
+<<<<<<< HEAD
       /*newFav[0].isFav = true;  // set isFav true
       const newJob = {};
       Object.assign(newJob, newFav);
@@ -102,10 +124,13 @@ class Container extends Component {
         allJobs: addIsfav,
       })
       console.log(this.state.allJobs);*/
+=======
+>>>>>>> 59a67badac53d841048dd59dc0f4390ede4e7da8
     }
 
     removeFavHandler = (id)=>{
       const favs = [...this.state.favJobs];
+<<<<<<< HEAD
       let jobUnfav = favs.filter(job=>job.id===id);
       jobUnfav[0].isFav = false;
       favs[favs.indexOf(jobUnfav)] = jobUnfav;
@@ -118,10 +143,25 @@ class Container extends Component {
       Object.assign(newJob, favs);
       const removeIsfav = this.state.allJobs.slice(id);
       removeIsfav.concat(newJob);
-      this.setState({
-        allJobs: removeIsfav,
+=======
+      const updateAlljobs = this.state.allJobs; 
+        
+      updateAlljobs.map( jobAll => {
+          if(jobAll.id === id){
+            jobAll.isFav = false;
+          }
       })
+>>>>>>> 59a67badac53d841048dd59dc0f4390ede4e7da8
+      this.setState({
+        allJobs : updateAlljobs,
+      })
+<<<<<<< HEAD
       console.log(this.state.allJobs)*/
+=======
+      const updateFavs = favs.filter(job=>job.id !==id);  
+      this.setState({favJobs: updateFavs});
+      localStorage.setItem("favs", JSON.stringify(updateFavs));
+>>>>>>> 59a67badac53d841048dd59dc0f4390ede4e7da8
     }
 
     showJobDetailHandler = (job) => {
@@ -222,6 +262,9 @@ class Container extends Component {
 
                 {showJobDetails}
             </div>
+            <footer className="footer col-12">
+              <h4>Copyright &reg; UTN Team at Globant </h4>
+            </footer>
           </div>
         )
     }

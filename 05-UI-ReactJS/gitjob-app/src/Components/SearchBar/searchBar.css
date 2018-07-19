@@ -17,17 +17,17 @@
 .inputField{
   margin: 10px 10px 10px 3px;
 }
-@media screen and (max-width: 499px){
+@media screen and (max-width: 600px){
   .searchFields{
     text-align: center;
     box-sizing: border-box;
   }
   .inputField{
     width: 100%;
+    box-sizing: border-box;
   }
   .searchButton{
-    float: 0;
-    margin-right: 50%;
-    margin-left:50%;
+    float: none;
+    margin-left: 40%;
   }
 }
